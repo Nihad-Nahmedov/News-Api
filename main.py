@@ -25,7 +25,7 @@ news3 = News("New General AI",
 news_list = [news1, news2, news3]
 
 
-@app.route('/')
+@app.route('/', methods=['GET'])
 def index():
     return render_template('index.html', news_list=news_list)
 
