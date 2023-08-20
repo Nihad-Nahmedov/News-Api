@@ -11,7 +11,7 @@ class News:
 
 
 # Create news objects
-news1 = News("Iphone 14",
+news1 = News("Iphone 14 Pro",
              "iPhone 14 Pro and iPhone 14 Pro Max are splash, water, and dust resistant and were tested under controlled laboratory conditions with a rating of IP68 under IEC standard 60529(maximum depth of 6 meters up to 30 minutes.",
              "https://netrinoimages.s3.eu-west-2.amazonaws.com/2022/12/08/1373191/426752/iphone_14_pro_max_3d_model_c4d_max_obj_fbx_ma_lwo_3ds_3dm_stl_4402727_o.png")
 news2 = News("New iPadOS 17",
