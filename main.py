@@ -1,6 +1,8 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request, jsonify
 
 app = Flask(__name__)
+
+API_KEY = "4b1a0e44-0205-4ad8-9158-3c10c3e87ae9"
 
 
 class News:
@@ -25,9 +27,27 @@ news3 = News("New General AI",
 news_list = [news1, news2, news3]
 
 
-@app.route('/', methods=['GET'])
+@app.route('/')
 def index():
     return render_template('index.html', news_list=news_list)
+
+
+@app.route('/api/news', methods=['GET'])
+def get_news():
+    api_key = request.args.get('api_key')
+
+    if api_key != API_KEY:
+        return jsonify({'error': 'Invalid API key'}), 401
+
+    news_data = []
+    for news in news_list:
+        news_data.append({
+            'title': news.title,
+            'description': news.description,
+            'image_filename': news.image_filename
+        })
+    
+    return jsonify({'news': news_data})
 
 
 if __name__ == '__main__':
