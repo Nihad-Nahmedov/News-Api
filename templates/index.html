@@ -1,45 +1,40 @@
+
 <!DOCTYPE html>
 <html>
 <head>
     <title>News App</title>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
     <h1>News</h1>
     <div id="news-container"></div>
 
     <script>
-        $(document).ready(function () {
-            const apiKey = '4b1a0e44-0205-4ad8-9158-3c10c3e87ae9';
-            const apiEndpoint = `http://127.0.0.1:5000/api/news?api_key=${apiKey}`;
+        const apiKey = '4b1a0e44-0205-4ad8-9158-3c10c3e87ae9';
+        const apiEndpoint = `http://127.0.0.1:5000/api/news?api_key=${apiKey}`;
 
-            $.ajax({
-                url: apiEndpoint,
-                method: 'GET',
-                dataType: 'json',
-                success: function (response) {
-                    const newsContainer = $('#news-container');
+        fetch(apiEndpoint)
+            .then(response => response.json())
+            .then(data => {
+                const newsContainer = document.getElementById('news-container');
 
-                    if (response.news) {
-                        response.news.forEach(newsItem => {
-                            const newsDiv = `
-                                <div>
-                                    <h2>${newsItem.title}</h2>
-                                    <p>${newsItem.description}</p>
-                                    <img src="${newsItem.image_base64}" alt="${newsItem.title}" width="300">
-                                </div>
-                            `;
-                            newsContainer.append(newsDiv);
-                        });
-                    } else {
-                        newsContainer.append('<p>No news available.</p>');
-                    }
-                },
-                error: function (error) {
-                    console.log('Error:', error);
+                if (data.news) {
+                    data.news.forEach(newsItem => {
+                        const newsDiv = `
+                            <div>
+                                <h2>${newsItem.title}</h2>
+                                <p>${newsItem.description}</p>
+                                <img src="${newsItem.image_base64}" alt="${newsItem.title}" width="300">
+                            </div>
+                        `;
+                        newsContainer.innerHTML += newsDiv;
+                    });
+                } else {
+                    newsContainer.innerHTML = '<p>No news available.</p>';
                 }
+            })
+            .catch(error => {
+                console.log('Error:', error);
             });
-        });
     </script>
 </body>
 </html>
