@@ -1,40 +1,21 @@
-
 <!DOCTYPE html>
 <html>
+
 <head>
-    <title>News App</title>
+    <title>Simple News App</title>
 </head>
 <body>
     <h1>News</h1>
-    <div id="news-container"></div>
-
-    <script>
-        const apiKey = '4b1a0e44-0205-4ad8-9158-3c10c3e87ae9';
-        const apiEndpoint = `http://127.0.0.1:5000/api/news?api_key=${apiKey}`;
-
-        fetch(apiEndpoint)
-            .then(response => response.json())
-            .then(data => {
-                const newsContainer = document.getElementById('news-container');
-
-                if (data.news) {
-                    data.news.forEach(newsItem => {
-                        const newsDiv = `
-                            <div>
-                                <h2>${newsItem.title}</h2>
-                                <p>${newsItem.description}</p>
-                                <img src="${newsItem.image_base64}" alt="${newsItem.title}" width="300">
-                            </div>
-                        `;
-                        newsContainer.innerHTML += newsDiv;
-                    });
-                } else {
-                    newsContainer.innerHTML = '<p>No news available.</p>';
-                }
-            })
-            .catch(error => {
-                console.log('Error:', error);
-            });
-    </script>
+        <div>
+            <h2>{{ news_list[0].title }}</h2>
+            <p>{{ news_list[0].description }}</p>
+            <img src="{{ url_for('static', filename='iphone_14_pro.png') }}" alt="{{ news_list[0] }}" width="300">
+            <h2>{{ news_list[1].title }}</h2>
+            <p>{{ news_list[1].description }}</p>
+            <img src="{{ url_for('static', filename='iPadOS-17.jpg') }}" alt="{{ news_list[0] }}" width="300">
+            <h2>{{ news_list[2].title }}</h2>
+            <p>{{ news_list[2].description }}</p>
+            <img src="{{ url_for('static', filename='AI.jpg') }}" alt="{{ news_list[0] }}" width="300">
+        </div>
 </body>
 </html>
