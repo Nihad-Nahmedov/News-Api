@@ -2,7 +2,7 @@ from flask import Flask, render_template, request, jsonify
 from flask_cors import CORS, cross_origin
 
 app = Flask(__name__)
-CORS(app, origins="http://localhost:5501")
+CORS(app)
 
 API_KEY = "4b1a0e44-0205-4ad8-9158-3c10c3e87ae9"
 
@@ -27,12 +27,6 @@ news3 = News("New General AI",
 
 # Store news objects in a list
 news_list = [news1, news2, news3]
-
-
-@app.route('/')
-@cross_origin()
-def index():
-    return render_template('index.html', news_list=news_list)
 
 
 @app.route('/api/news', methods=['GET'])
