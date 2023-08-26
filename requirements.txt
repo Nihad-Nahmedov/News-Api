@@ -14,5 +14,6 @@ sqlparse==0.4.4
 sympy==1.12
 tzdata==2023.3
 virtualenv==20.24.2
+flask-cors==4.0.0
 
 Flask~=2.3.2

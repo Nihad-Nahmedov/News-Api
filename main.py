@@ -2,7 +2,7 @@ from flask import Flask, render_template, request, jsonify
 from flask_cors import CORS
 
 app = Flask(__name__)
-CORS(app)
+CORS(app, origins="http://localhost:5501")
 
 API_KEY = "4b1a0e44-0205-4ad8-9158-3c10c3e87ae9"
 
