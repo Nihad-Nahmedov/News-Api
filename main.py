@@ -8,10 +8,10 @@ API_KEY = "4b1a0e44-0205-4ad8-9158-3c10c3e87ae9"
 
 
 class News:
-    def __init__(self, title, description, image_filename):
-        self.title = title
-        self.description = description
-        self.image_filename = image_filename
+    def __init__(self, tit, des, img):
+        self.tit = tit
+        self.des = des
+        self.img = img
 
 
 # Create news objects
@@ -40,9 +40,9 @@ def get_news():
     news_data = []
     for news in news_list:
         news_data.append({
-            'title': news.title,
-            'description': news.description,
-            'image_filename': news.image_filename
+            'tit': news.tit,
+            'des': news.des,
+            'img': news.img
         })
     
     return jsonify({'news': news_data})
